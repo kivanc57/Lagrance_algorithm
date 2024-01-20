@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import copy
+from matplotlib.pyplot import imshow, show
+from numpy import array, reshape, sqrt, nan
+from copy import deepcopy
 
 # Step 1: Identify and replace ['.'] values with numerical ['0'] values
 def enumerate_list(any_list):
@@ -16,7 +16,7 @@ def enumerate_list(any_list):
 
 # Step 2: Perform Lagrance smoothing on adjacent numerical values
 def set_lagrance(any_list, special_indexes=[]):
-    new_list = copy.deepcopy(any_list)
+    new_list = deepcopy(any_list)
     square_root = int(len(any_list) ** 0.5)
 
     for i in special_indexes:
@@ -47,15 +47,15 @@ def set_lagrance(any_list, special_indexes=[]):
 
 # Determine the shape based on the length of the data, visualize it
 def make_image(data):
-    side_length = int(np.sqrt(len(data)))
+    side_length = int(sqrt(len(data)))
     
-    data = np.reshape(data, (side_length, -1))
+    data = reshape(data, (side_length, -1))
 
     if 0 in data:
-        data[data == 0] = np.nan
+        data[data == 0] = nan
 
-    plt.imshow(data, interpolation='none', cmap='viridis')
-    plt.show()
+    imshow(data, interpolation='none', cmap='viridis')
+    show()
 
 
 def main():
@@ -71,7 +71,7 @@ def main():
 
     for step in range(1, 100):  # Limit the number of steps to avoid infinite loop
         print(f'This is STEP: {step}')
-        make_image(np.array(rendered_list))
+        make_image(array(rendered_list))
         new_list, indexes = set_lagrance(any_list=rendered_list, special_indexes=indexes)
 
         if new_list == rendered_list:
