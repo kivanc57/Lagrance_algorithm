@@ -2,6 +2,7 @@ from matplotlib.pyplot import imshow, show
 from numpy import array, reshape, sqrt, nan
 from copy import deepcopy
 
+
 # Step 1: Identify and replace ['.'] values with numerical ['0'] values
 def enumerate_list(any_list):
     special_indexes = []
