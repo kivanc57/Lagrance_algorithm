@@ -15,7 +15,7 @@ def get_map(side_length, missing_values):
     
     #Adjust missing values as 0s to the game map and store their values in special_indexes
     for _ in range(missing_values):
-        i_coordinates = choices(range(side_length), k=2)
+        i_coordinates = tuple(choices(range(side_length), k=2)) #Mutuability is not desired, convert list to tuple.
         game_map[i_coordinates[0]][i_coordinates[1]] = 0.0
         special_indexes.append(i_coordinates)
     return game_map, special_indexes
